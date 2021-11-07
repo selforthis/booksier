@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% if title %}
     <title>{{ title }} - Booksier</title>
+    {% else %}
+    <title>Welcome to Booksier!</title>
+    {% endif %}
 </head>
 <body>
     <h1>Hello, {{ user.username }}!</h1>
+    {% for book in books %}
+        <div><p>{{ book.title }}&nbsp;{{ book.total_pages }}</p></div>
+    {% endfor %}
 </body>
 </html>

@@ -5,4 +5,14 @@ from app import app
 @app.route('/')
 def hello_world():
     user = {'username': 'Lola'}
-    return render_template('index.html', title='Home', user=user)
+    books = [
+        {
+            "title": "Grinberg - The New And Improved Flask Mega-Tutorial (2017)",
+            "total_pages": 496
+        },
+        {
+            "title": "Lott - Modern Python Cookbook (2020)",
+            "total_pages": 789
+        },
+    ]
+    return render_template('index.html', title='Home', user=user, books=books)
