@@ -5,8 +5,24 @@
     <title>{{ title }} - Booksier</title>
 </head>
 <body>
-    <div>Booksier: <a href="/index">Home</a></div>
+    <div>
+        Booksier:
+        <a href="/index">Home</a>
+        <a href="/login">Login</a>
+    </div>
+
     <hr/>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
     {# This block's content may be replaced by internals of the same block of a child template. #}
     {% block content %}{% endblock %}
     <hr/>
