@@ -4,24 +4,15 @@ from werkzeug.urls import url_parse
 from app import app
 from app.forms import LoginForm
 from app.user import User
+from app.book import Book
 
 
 @app.route('/')
 @app.route('/index')
 @login_required
 def index():
-    user = {'username': 'Lola'}
-    books = [
-        {
-            "title": "Grinberg - The New And Improved Flask Mega-Tutorial (2017)",
-            "total_pages": 496
-        },
-        {
-            "title": "Lott - Modern Python Cookbook (2020)",
-            "total_pages": 789
-        },
-    ]
-    return render_template('index.html', title='Home', user=user, books=books)
+    books = Book.query.all()
+    return render_template('index.html', title='Home', books=books)
 
 
 @app.route('/login', methods=['GET', 'POST'])
