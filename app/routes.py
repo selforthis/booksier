@@ -49,3 +49,11 @@ def register():
     db.session.commit()
     flash('Congratulations, {}, you are now a registered user!'.format(user.username))
     return redirect(url_for('login'))
+
+
+@app.route('/user/<username>')
+@login_required
+def user(username: str):
+    user = User.query.filter_by(username=username).first_or_404()
+    books = Book.query.filter_by(user=user)
+    return render_template('user.html', user=user, books=books)

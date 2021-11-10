@@ -5,14 +5,14 @@
     <title>{{ title }} - Booksier</title>
 </head>
 <body>
+
 <div>
     Booksier:
-
     <a href="{{ url_for('index') }}">Home</a>
-
     {% if current_user.is_anonymous %}
         <a href="{{ url_for('login') }}">Login</a>
     {% else %}
+        <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
         <a href="{{ url_for('logout') }}">Logout</a>
     {% endif %}
 </div>
@@ -31,6 +31,6 @@
 
 {# This block's content may be replaced by internals of the same block of a child template. #}
 {% block content %}{% endblock %}
-<hr/>
+
 </body>
 </html>
