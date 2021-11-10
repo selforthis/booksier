@@ -1,6 +1,4 @@
-from app import app, db
-from app.user import User
-from app.book import Book
+from app import app, db, User, Book
 
 
 @app.shell_context_processor
