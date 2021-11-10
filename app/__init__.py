@@ -15,4 +15,5 @@ from app.book import Book
 from app.user import User
 from app.login_form import LoginForm
 from app.registration_form import RegistrationForm
+from app.book_form import BookForm
 from app import routes
