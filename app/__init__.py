@@ -17,4 +17,4 @@ from app.login_form import LoginForm
 from app.registration_form import RegistrationForm
 from app.book_form import BookForm
 from app.edit_profile_form import EditProfileForm
-from app import routes
+from app import routes, errors
