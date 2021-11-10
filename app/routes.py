@@ -1,15 +1,23 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
-from app import app, db, LoginForm, RegistrationForm, User, Book
+from app import app, db, LoginForm, RegistrationForm, BookForm, User, Book
 
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    books = Book.query.all()
-    return render_template('index.html', title='Home', books=books)
+    form = BookForm()
+    books = Book.query.filter_by(user=current_user)
+    if not form.validate_on_submit():
+        return render_template("index.html", title='Home Page', form=form,
+                               books=books)
+    book = Book(title=form.title.data, total_pages=form.total_pages.data, user=current_user)
+    db.session.add(book)
+    db.session.commit()
+    flash('A new book was added successfully!')
+    return redirect(url_for('index'))
 
 
 @app.route('/login', methods=['GET', 'POST'])

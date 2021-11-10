@@ -2,7 +2,21 @@
 
 {% block content %}
     <h1>Hello, {{ current_user.username }}!</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <div>
+            <p>{{ form.title(size=150) }}&nbsp;{{ form.total_pages(size=40) }}&nbsp;{{ form.submit() }}</p>
+            <p>
+                {% for error in form.title.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+                {% for error in form.total_pages.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </p>
+        </div>
+    </form>
     {% for book in books %}
-        <div><p>{{ book.user.username }}: {{ book.title }}&nbsp;{{ book.total_pages }}</p></div>
+        {% include '_book.html' %}
     {% endfor %}
 {% endblock %}

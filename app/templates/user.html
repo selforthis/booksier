@@ -9,11 +9,6 @@
     </table>
     <hr>
     {% for book in books %}
-        <table>
-            <tr valign="top">
-                <td><img src="{{ book.user.avatar(36) }}"></td>
-                <td>{{ book.title }}&nbsp;{{ book.total_pages }}</td>
-            </tr>
-        </table>
+        {% include '_book.html' %}
     {% endfor %}
 {% endblock %}
